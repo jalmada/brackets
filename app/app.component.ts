@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Player } from './models/player.model';
 import { Match } from './models/match.model';
+import { Competition } from './models/competition.model';
 
 @Component({
   moduleId: module.id,
@@ -13,30 +14,19 @@ export class AppComponent {
 
   participantName = "";
   participants = [];
-  matches : Match[] = [];
+
+  competition : Competition;
 
   constructor(){
+    this.competition = new Competition("Default");
   }
 
   ngOnInit() {}
 
   add(){
-    this.participants.push(this.participantName);
-
-    let newPlayer = new Player(this.participantName);
-    let count = this.matches.length;
-
-    if(count < 1 || (count >= 1 && this.matches[count-1].Player2 != null)){
-      let newMatch = new Match();
-      this.matches.push(newMatch);
-      count++;
-    }
-
-    let lastMatch = this.matches[count - 1];
-    lastMatch.add(newPlayer);
-
+    this.competition.addParticipantName(this.participantName);
+    this.participants = this.competition.Participants;
 
     console.log(this.participants);
-    console.log(this.matches);
   }
 }
