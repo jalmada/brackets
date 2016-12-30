@@ -13,20 +13,28 @@ import { Competition } from './models/competition.model';
 export class AppComponent { 
 
   participantName = "";
+  competitionName = "";
   participants = [];
+  isDisabled = true;
 
   competition : Competition;
 
   constructor(){
-    this.competition = new Competition("Default");
+    
   }
 
   ngOnInit() {}
 
-  add(){
+  createCompetition(){
+    this.competition = new Competition(this.competitionName);
+    this.isDisabled = false;
+  }
+
+  addParticipant(){
     this.competition.addParticipantName(this.participantName);
     this.participants = this.competition.Participants;
-
+    this.participantName = "";
     console.log(this.participants);
+    console.log(this.competition);
   }
 }
