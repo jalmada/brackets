@@ -11,7 +11,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <h1>{{competitionName}}</h1>
+            <h1>{{competition != null ? competition.Name : ""}}</h1>
         </div>
     </div>
     <div class="row" [class.disabledbutton]="isDisabled">
@@ -23,4 +23,5 @@
             </div>
         </div>    
     </div>
+    <participants-list #participantsList>Loading...</participants-list>
 </div>

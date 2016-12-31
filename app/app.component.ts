@@ -2,15 +2,17 @@ import { Component, ViewChild } from '@angular/core';
 import { Player } from './models/player.model';
 import { Match } from './models/match.model';
 import { Competition } from './models/competition.model';
+import { ParticipantsListComponent } from './components/participantslist.component';
 
 @Component({
   moduleId: module.id,
   selector: 'my-app',
   templateUrl: 'app.component.html',
   providers : [ ]
-
 })
 export class AppComponent { 
+
+  private _currentParticipantId : number = 0;
 
   participantName = "";
   competitionName = "";
@@ -19,8 +21,9 @@ export class AppComponent {
 
   competition : Competition;
 
-  constructor(){
-    
+  @ViewChild('participantsList') private participantsList: ParticipantsListComponent;
+
+  constructor(){  
   }
 
   ngOnInit() {}
@@ -28,13 +31,14 @@ export class AppComponent {
   createCompetition(){
     this.competition = new Competition(this.competitionName);
     this.isDisabled = false;
+    this.competitionName = "";
   }
 
   addParticipant(){
-    this.competition.addParticipantName(this.participantName);
-    this.participants = this.competition.Participants;
+    this.competition.addParticipant(++this._currentParticipantId, this.participantName);
     this.participantName = "";
-    console.log(this.participants);
+    this.participantsList.players = this.competition.Participants;
+    //console.log(this.participants);
     console.log(this.competition);
   }
 }

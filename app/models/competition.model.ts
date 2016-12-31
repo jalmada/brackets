@@ -34,11 +34,11 @@ export class Competition
         this._matches.push(match);
     }
 
-    addParticipantName(player : string){
-        this.addParticipant(new Player(player));
+    addParticipant(id : number, name : string){
+        this.addPlayer(new Player(id, name));
     }
 
-    addParticipant(player : Player)
+    addPlayer(player : Player)
     {
         let count = this._matches.length;
 
