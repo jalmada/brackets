@@ -3,6 +3,7 @@ import { Player } from './models/player.model';
 import { Match } from './models/match.model';
 import { Competition } from './models/competition.model';
 import { ParticipantsListComponent } from './components/participantslist.component';
+import { MatchesListComponent } from './components/matcheslist.component';
 
 @Component({
   moduleId: module.id,
@@ -22,6 +23,7 @@ export class AppComponent {
   competition : Competition;
 
   @ViewChild('participantsList') private participantsList: ParticipantsListComponent;
+  @ViewChild('matchesList') private matchesList: MatchesListComponent;
 
   constructor(){  
   }
@@ -38,6 +40,7 @@ export class AppComponent {
     this.competition.addParticipant(++this._currentParticipantId, this.participantName);
     this.participantName = "";
     this.participantsList.players = this.competition.Participants;
+    this.matchesList.matches = this.competition.Matches;
     //console.log(this.participants);
     console.log(this.competition);
   }

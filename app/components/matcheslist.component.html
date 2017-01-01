@@ -1,0 +1,5 @@
+<ul>
+    <li *ngFor="let m of matches">
+    {{ m.Player1.Name + (m.Player2 == null ? '' : ' Vs ' + m.Player2.Name) }}
+    </li>
+</ul>
