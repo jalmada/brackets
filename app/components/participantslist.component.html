@@ -1,5 +1,6 @@
 <ul>
-    <li *ngFor="let p of players">
-    {{ p.Id + ' - ' + p.Name }}
+    <li *ngFor="let p of players"> 
+        <div id = 'view{{p.Id}}'>{{ p.Id + ' - ' + p.Name }}  <button>Update</button> </div>
+        <div class='edit' id = 'edit{{p.Id}}'><input id='editName{{p.ID}}' /><button>Save</button> </div>
     </li>
 </ul>

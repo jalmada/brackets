@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { Player } from './models/player.model';
 import { Match } from './models/match.model';
 import { Competition } from './models/competition.model';
@@ -11,7 +11,7 @@ import { MatchesListComponent } from './components/matcheslist.component';
   templateUrl: 'app.component.html',
   providers : [ ]
 })
-export class AppComponent { 
+export class AppComponent implements  AfterViewInit { 
 
   private _currentParticipantId : number = 0;
 
@@ -26,6 +26,7 @@ export class AppComponent {
   @ViewChild('matchesList') private matchesList: MatchesListComponent;
 
   constructor(){  
+    
   }
 
   ngOnInit() {}
@@ -34,6 +35,7 @@ export class AppComponent {
     this.competition = new Competition(this.competitionName);
     this.isDisabled = false;
     this.competitionName = "";
+
   }
 
   addParticipant(){
@@ -43,5 +45,21 @@ export class AppComponent {
     this.matchesList.matches = this.competition.Matches;
     //console.log(this.participants);
     console.log(this.competition);
+  }
+
+  ngAfterViewInit(){
+    //Test Data
+    this.competitionName = 'Test Competition';
+    this.createCompetition();
+    this.participantName = 'Jose';
+    this.addParticipant();
+    this.participantName = 'Pedro';
+    this.addParticipant();
+    this.participantName = 'Maria';
+    this.addParticipant();
+    this.participantName = 'Oscar';
+    this.addParticipant();
+    this.participantName = 'Ruben';
+    this.addParticipant();
   }
 }
