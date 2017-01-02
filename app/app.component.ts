@@ -6,6 +6,12 @@ import { ParticipantsListComponent } from './components/participantslist.compone
 import { MatchesListComponent } from './components/matcheslist.component';
 import { BracketsComponent } from './components/brackets.component';
 
+
+//Diseña el Brackets como un organizador no como objectos que se generan.
+//Igual pensaba pasar brackets como visualizador pero croe que eso es otra cosa.
+
+
+
 @Component({
   moduleId: module.id,
   selector: 'my-app',
