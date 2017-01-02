@@ -6,39 +6,35 @@ export class Player
 
     constructor (private _id : number, private _name : string){ }
 
-    get Name()
-    {
+    get Name(){
         return this._name;
     }
 
-    set NameView(value)
-    {
+    set NameView(value){
         this._nameView = value;
     }
 
-    get Id()
-    {
+    get Id(){
         return this._id;
     }
 
-    get HideEditMode()
-    {
+    get HideEditMode(){
         return this._hideEditMode;
     }
 
-    set HideEditMode(value)
-    {
+    set HideEditMode(value){
         this._hideEditMode = value;
     }
 
-    edit()
-    {
+    edit(){
         this._hideEditMode = false;
     }
 
-    save()
-    {
+    save(){
         this._name = this._nameView;
+        this._hideEditMode = true;
+    }
+    cancel(){
         this._hideEditMode = true;
     }
 }

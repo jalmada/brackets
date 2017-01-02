@@ -1,0 +1,10 @@
+<div class="row">
+        <div *ngFor="let b of Brackets" class="col-md-2">
+           <div *ngFor="let m of b.Matches" class="row">
+                <div class="col-md-12">
+                    {{ m.Player1.Name + (m.Player2 == null ? '' : ' Vs ' + m.Player2.Name) }}
+                </div>
+            </div>
+        </div>    
+    </div>
+<ul>

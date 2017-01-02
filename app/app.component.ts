@@ -4,6 +4,7 @@ import { Match } from './models/match.model';
 import { Competition } from './models/competition.model';
 import { ParticipantsListComponent } from './components/participantslist.component';
 import { MatchesListComponent } from './components/matcheslist.component';
+import { BracketsComponent } from './components/brackets.component';
 
 @Component({
   moduleId: module.id,
@@ -24,7 +25,7 @@ export class AppComponent implements  AfterViewInit {
 
   @ViewChild('participantsList') private participantsList: ParticipantsListComponent;
   @ViewChild('matchesList') private matchesList: MatchesListComponent;
-
+  @ViewChild('brackets') private brackets: BracketsComponent;
   constructor(){  
     
   }
@@ -43,6 +44,7 @@ export class AppComponent implements  AfterViewInit {
     this.participantName = "";
     this.participantsList.players = this.competition.Participants;
     this.matchesList.matches = this.competition.Matches;
+    
     //console.log(this.participants);
     console.log(this.competition);
   }

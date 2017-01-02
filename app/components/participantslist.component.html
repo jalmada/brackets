@@ -1,6 +1,10 @@
 <ul>
     <li *ngFor="let p of players"> 
-        <div [class.edit]="!p.HideEditMode" id = 'view{{p.Id}}'>{{ p.Id + ' - ' + p.Name }}  <button (click) = "p.edit()">Update</button> </div>
-        <div [class.edit]="p.HideEditMode" id = 'edit{{p.Id}}'><input id='editName{{p.ID}}' [(ngModel)] = "p.NameView" /><button  (click) = "p.save()" >Save</button> </div>
+        <div [class.edit]="!p.HideEditMode" id = 'view{{p.Id}}'>
+            {{ p.Id + ' - ' + p.Name }}  <button (click) = "p.edit()">Update</button>
+        </div>
+        <div [class.edit]="p.HideEditMode" id = 'edit{{p.Id}}'>
+            <input id='editName{{p.ID}}' [(ngModel)] = "p.NameView" /><button (click) = "p.save()" >Save</button><button (click) = "p.cancel()" >Cancel</button> 
+        </div>
     </li>
 </ul>
