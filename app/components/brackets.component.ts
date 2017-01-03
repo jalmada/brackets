@@ -26,27 +26,23 @@ export class BracketsComponent {
       return this._brackets;
   }
 
-  addMatches(matches : Match[]){
-      matches.forEach(m => {
-          this.addMatch(m);
+  addPlayers(players : Player[]){
+      players.forEach(p => {
+          this.addPlayer(p);
       });
   }
 
-  addMatch(match : Match){
+  addPlayer(player : Player){
 
-    var lastBracket : Bracket;
+      var bracketsCount = this._brackets.length;
 
-    if(this._brackets.length == 0){
-        lastBracket = new Bracket();
-        this._brackets.push(lastBracket);
-    } else {
+      if(bracketsCount <= 0 || (bracketsCount > 0 && this._brackets[bracketsCount - 1].IsFull)){
+          this._brackets.push(new Bracket());
+      }
+      
+      let lastBracket = this._brackets[this._brackets.length - 1];
 
-        lastBracket = this._brackets[this._brackets.length - 1];
-        if(lastBracket.IsFull){
-            lastBracket = new Bracket(this._brackets.length);
-            this._brackets.push(lastBracket);
-        }
-    }
-    lastBracket.addMatch(match);
+      lastBracket.addPlayer(player);
+
   }
 }
