@@ -19,8 +19,11 @@ export class Bracket{
         return this._players.length == this.MaxPlayers;
     }
 
-    addPlayer(player : Player){
-
+    get Matches(){
+        return this._matches;
     }
 
+    addPlayer(player : Player){
+        //Basic logic for adding players based on the bracket level
+    }
 }

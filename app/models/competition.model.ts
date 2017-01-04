@@ -1,8 +1,11 @@
 import { Match } from './match.model';
 import { Player } from './player.model';
+import { Bracket } from './bracket.model';
+
 export class Competition
 {
-    private _matches : Match[] = [];
+    private _brackets : Bracket[] = [];
+    private _participants : Player[] = [];
 
     constructor (private _name : string){ }
 
@@ -11,46 +14,31 @@ export class Competition
         return this._name;
     }
 
+    get Brackets(){
+        return this._brackets;
+    }
+
     get Matches()
     {
-        return this._matches;
+        var matches : Match[];
+        this._brackets.forEach(b => {
+            matches.concat(b.Matches);
+        });
+        return matches;
     }
 
     get Participants()
     {
-        let participants : Player[] = []; 
-
-        this._matches.forEach(m => {
-            participants.push(m.Player1);
-            if(m.Player2 != null) {
-                participants.push(m.Player2);
-            }
-        });
-        return participants;
-    }
-
-    addMatch(match : Match)
-    {
-        this._matches.push(match);
+        return this._participants;
     }
 
     addParticipant(id : number, name : string){
-        this.addPlayer(new Player(id, name));
+        this.addaddParticipantObj(new Player(id, name));
     }
 
-    addPlayer(player : Player)
+    addaddParticipantObj(player : Player)
     {
-        let count = this._matches.length;
-
-        if(count < 1 || (count >= 1 && this._matches[count-1].Player2 != null)){
-            let newMatch = new Match();
-            this._matches.push(newMatch);
-            count++;
-        }
-
-        let lastMatch = this._matches[count - 1];
-        lastMatch.add(player);
-
+        //Logic to adjust the brackets on the fly
     }
 
 }
