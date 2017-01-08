@@ -2,7 +2,6 @@ import { Match } from './match.model';
 import { Player } from './player.model';
 export class Bracket{
     private _matches : Match[] = [];
-    private _players : Player[] = [];
 
     constructor (private _level : number = 0){ }
 
@@ -16,14 +15,46 @@ export class Bracket{
     }
 
     get IsFull(){
-        return this._players.length == this.MaxPlayers;
+        return this.Players.length == this.MaxPlayers;
     }
 
     get Matches(){
         return this._matches;
     }
 
-    addPlayer(player : Player){
-        //Basic logic for adding players based on the bracket level
+    get Players(){
+        var players = [];
+
+        this._matches.forEach(m => {
+            if(m.Player1 != null){
+                players.push(m.Player1);
+            }
+            if(m.Player2 != null){            
+                players.push(m.Player2);
+            }
+        });
+
+        return players;
     }
+
+    addPlayer(player : Player){
+        if(this.IsFull){ 
+            return;
+        }
+
+        var match = new Match();
+
+        if(this._matches.length == 0){
+            this._matches.push(match);
+        } else {
+            for(var x; x < this._matches.length; x++){
+                let m = this._matches[x];
+                if(m.Player1 == null || m.Player2 == null){
+                    match = m;
+                    break;
+                }
+            }
+        }
+        match.add(player);
+    }   
 }

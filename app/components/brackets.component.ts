@@ -12,37 +12,12 @@ import { Bracket } from '../models/bracket.model'
 })
 export class BracketsComponent { 
 
-  private _brackets : Bracket[] = [];
-  @Input()  matches : Match[] = [];
+  @Input()  brackets : Bracket[] = [];
 
   constructor(){
   }
 
   ngOnInit( ) {
      
-  }
-
-  get Brackets(){
-      return this._brackets;
-  }
-
-  addPlayers(players : Player[]){
-      players.forEach(p => {
-          this.addPlayer(p);
-      });
-  }
-
-  addPlayer(player : Player){
-
-      var bracketsCount = this._brackets.length;
-
-      if(bracketsCount <= 0 || (bracketsCount > 0 && this._brackets[bracketsCount - 1].IsFull)){
-          this._brackets.push(new Bracket());
-      }
-      
-      let lastBracket = this._brackets[this._brackets.length - 1];
-
-      lastBracket.addPlayer(player);
-
   }
 }

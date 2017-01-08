@@ -31,7 +31,7 @@ export class AppComponent implements  AfterViewInit {
 
   @ViewChild('participantsList') private participantsList: ParticipantsListComponent;
   @ViewChild('matchesList') private matchesList: MatchesListComponent;
-  @ViewChild('brackets') private brackets: BracketsComponent;
+  @ViewChild('brackets') private bracketsList: BracketsComponent;
   constructor(){  
     
   }
@@ -50,7 +50,7 @@ export class AppComponent implements  AfterViewInit {
     this.participantName = "";
     this.participantsList.players = this.competition.Participants;
     this.matchesList.matches = this.competition.Matches;
-    
+    this.bracketsList.brackets = this.competition.Brackets;
     //console.log(this.participants);
     console.log(this.competition);
   }
